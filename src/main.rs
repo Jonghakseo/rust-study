@@ -3,12 +3,13 @@ extern crate hello_cargo;
 extern crate fibonacci;
 
 fn main() {
-    for index in 1..17 {
-        println!("{}",fibonacci::get_fibonacci_number(index));
-    }
-    for index in 1..17 {
-        println!("{:?}",fibonacci::get_fibonacci_vector(index));
-    }
+    // for index in 1..17 {
+    //     println!("{}", fibonacci::get_fibonacci_number(index));
+    // }
+    // for index in 1..17 {
+    //     println!("{:?}", fibonacci::get_fibonacci_vector(index));
+    // }
+    println!("{}", fibonacci::get_fibonacci_struct(17));
     // let x = 5;
     //
     // let y = {

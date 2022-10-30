@@ -1,15 +1,12 @@
 extern crate guessing_number;
 extern crate hello_cargo;
+extern crate rect;
 extern crate fibonacci;
 
+use rect::Rectangle;
+
 fn main() {
-    // for index in 1..17 {
-    //     println!("{}", fibonacci::get_fibonacci_number(index));
-    // }
-    // for index in 1..17 {
-    //     println!("{:?}", fibonacci::get_fibonacci_vector(index));
-    // }
-    println!("{}", fibonacci::get_fibonacci_struct(17));
+    rect_exec();
     // let x = 5;
     //
     // let y = {
@@ -20,8 +17,32 @@ fn main() {
     // };
     //
     // println!("The value of y is: {}", y);
-    //
-    //
-    // hello_cargo::hello();
-    // guessing_number::guess();
+}
+
+fn rect_exec() -> () {
+    let big_rect = Rectangle { width: 20, height: 20 };
+    let small_square = Rectangle::square(19);
+
+    match big_rect.contain(&small_square) {
+        true => println!("is Contain!"),
+        false => println!("is Not Contain!")
+    };
+}
+
+fn guessing_number_exec() {
+    guessing_number::guess();
+}
+
+fn hello_cargo_exec() {
+    hello_cargo::hello();
+}
+
+fn fibonacci_exec() {
+    for index in 1..17 {
+        println!("{}", fibonacci::get_fibonacci_number(index));
+    }
+    for index in 1..17 {
+        println!("{:?}", fibonacci::get_fibonacci_vector(index));
+    }
+    println!("{}", fibonacci::get_fibonacci_struct(17));
 }

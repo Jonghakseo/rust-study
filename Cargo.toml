@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 rand = "0.8.5"
+hello_cargo = { path = "./hello_cargo" }
+guessing_number = { path = "./guessing_number" }

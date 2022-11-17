@@ -1,48 +1,24 @@
-extern crate guessing_number;
-extern crate hello_cargo;
-extern crate rect;
-extern crate fibonacci;
-
-use rect::Rectangle;
+use std::env;
+use std::fs::File;
+use std::io::prelude::*;
 
 fn main() {
-    rect_exec();
-    // let x = 5;
-    //
-    // let y = {
-    //     let x = 3;
-    //     // 표현식의 종결은 세미콜론(;)을 사용하지 않는다.
-    //     // 세미콜론 사용시 평가 구문으로 인식되어 반환값이 아니게 됨;;
-    //     x + 1
-    // };
-    //
-    // println!("The value of y is: {}", y);
-}
+    let args: Vec<String> = env::args().collect();
 
-fn rect_exec() -> () {
-    let big_rect = Rectangle { width: 20, height: 20 };
-    let small_square = Rectangle::square(19);
-
-    match big_rect.contain(&small_square) {
-        true => println!("is Contain!"),
-        false => println!("is Not Contain!")
-    };
-}
-
-fn guessing_number_exec() {
-    guessing_number::guess();
-}
-
-fn hello_cargo_exec() {
-    hello_cargo::hello();
-}
-
-fn fibonacci_exec() {
-    for index in 1..17 {
-        println!("{}", fibonacci::get_fibonacci_number(index));
+    if args.len() < 3 {
+        panic!("검색을 위해서 인자를 2개 이상 입력해야 합니다. (검색하려는 문자열, 텍스트 파일)");
     }
-    for index in 1..17 {
-        println!("{:?}", fibonacci::get_fibonacci_vector(index));
-    }
-    println!("{}", fibonacci::get_fibonacci_struct(17));
+
+    let query = &args[1];
+    let filename = &args[2];
+
+    println!("검색하려는 키워드: {}", query);
+    println!("대상 파일: {}", filename);
+
+    let mut file = File::open(filename).expect(&*format!("{} 파일을 찾을 수 없습니다.", filename));
+    let mut file_text = String::new();
+
+    file.read_to_string(&mut file_text).expect("읽을 수 없는 파일입니다.");
+
+    println!("{}", file_text);
 }
